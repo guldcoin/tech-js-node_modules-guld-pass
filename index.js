@@ -30,7 +30,7 @@ async function init (gname, keys, p) {
 }
 
 async function show (p, lineNum) {
-  var pass = await decryptFile(path.join(home, '.password-store', `${p}.gpg`))
+  var pass = await decryptFile(path.join(home, '.password-store', `${p}.gpg`)).catch(e => undefined)
   if (pass) {
     if (lineNum !== undefined) {
       pass = pass.split('\n')
