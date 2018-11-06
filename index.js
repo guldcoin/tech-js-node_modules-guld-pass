@@ -49,9 +49,14 @@ async function insert (p, val) {
 
 function parsePass (raw) {
   var a
-  var arr = raw.split('\n')
+  var arr
+  if (raw === undefined) {
+    arr = []
+  } else {
+    arr = raw.split('\n')
+  }
   if (!Array.isArray(arr)) arr = [arr]
-  var pass = {'password': arr.shift()}
+  var pass = {'password': arr.shift() || undefined}
   while (arr.length > 0) {
     a = arr.shift()
     if (a.startsWith('login')) pass['login'] = a.replace('login: ', '').trim()
